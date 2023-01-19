@@ -1,0 +1,6 @@
+you need to istall "litetween" behaviour to be able to open the CAPX properly
+
+link: https://www.construct.net/en/forum/extending-construct-2/addons-29/behavior-litetween-48240
+
+install: download the behavior and copy it into this directory ( or your own directory based on your system ):
+C:\Program Files\Construct 2\exporters\html5\behaviors

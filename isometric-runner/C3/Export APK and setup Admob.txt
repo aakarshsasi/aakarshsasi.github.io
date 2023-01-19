@@ -1,0 +1,12 @@
+How to Build your Apk
+https://www.construct.net/en/tutorials/building-a-signed-apk-for-android-in-construct-3-28
+
+Note: you will need to create a new keystore for yourself as explained in the tutorial link above
+
+
+
+How to use admob Ads
+https://www.construct.net/en/make-games/manuals/construct-3/plugin-reference/mobile-advert
+
+
+
