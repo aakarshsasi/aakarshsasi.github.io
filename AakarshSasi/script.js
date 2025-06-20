@@ -273,56 +273,31 @@ $('a[href^="#"]').on('click', function(e) {
 
 // slight convenience: fix the header section with my correct age automatically
 
-var ages = [
-	{
-		year: 2020,
-		number: ' twenty one'
-	},
-	{
-		year: 2021,
-		number: 'twenty two'
-	},
-	{
-		year: 2022,
-		number: ' twenty three',
-	},
-	{
-		year: 2023,
-		number: ' twenty four',
-		extend: true
-	},
-	{
-		year: 2031,
-		number: ' thirty',
-		extend: true
-	},
-	// should not be using this website past this age probably hmm
-	{
-		year: 2041,
-		number: ' &lt;insert big-ass number&gt;',
-	}
-];
-
-for(var i = ages.length - 1; i >= 0; i--) {
-	var bday = new Date('04/23/' + ages[i].year),
-		today = new Date();
-
-	if(bday.getTime() <= today.getTime()) {
-		var str = ages[i].number;
-
-		if(ages[i].extend) {
-			var numbers = ['', ' one', ' two', ' three', ' four', ' five', ' six', ' seven', ' eight', ' nine'];
-
-			var n = today.getFullYear() - bday.getFullYear();
-
-			str += numbers[n];
-		}
-
-		$('.age').html(str);
-
-		break;
-	}
+var birthDate = new Date('1998-04-23');
+var today = new Date();
+var age = today.getFullYear() - birthDate.getFullYear();
+var m = today.getMonth() - birthDate.getMonth();
+if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
 }
+
+function numberToWords(num) {
+    var ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+    var tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+    var teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+
+    if (num < 10) {
+        return ones[num];
+    } else if (num < 20) {
+        return teens[num - 10];
+    } else {
+        var ten = Math.floor(num / 10);
+        var one = num % 10;
+        return tens[ten] + (one > 0 ? '-' + ones[one] : '');
+    }
+}
+
+$('.age').html(' ' + numberToWords(age));
 
 // easter egg
 
