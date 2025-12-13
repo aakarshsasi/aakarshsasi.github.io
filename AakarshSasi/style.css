@@ -788,3 +788,7 @@ section {
         height: 200px;
     }
 }
+.exp-details p {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+}
