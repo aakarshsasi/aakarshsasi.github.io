@@ -1,334 +1,227 @@
-var firstInit = true;
+document.addEventListener('DOMContentLoaded', () => {
 
-function mobileConditions() {
-	return !($(window).width() > 900 && $(window).height() < $(window).width());
-}
+    // --- 1. Typing Effect ---
+    const typingElement = document.querySelector('.typing-text');
+    const roles = ["Mobile", "UI/UX", "Seamless", "Swift"];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
 
-function bgInit(useCSSbg) {	
-	$('.works-card').each(function() {
-		var $el = $(this);
-		
-		if(firstInit) {
-			var bg =  $el.css('background-image');
-			if(bg == 'none') bg = $el.css('background-color');
-			$el.attr('data-bg', bg);
-			var el = $('<div class="bg"></div>');
-			el.css('background', bg);
-			$('.bg-scroller').append(el);
-		}
-		
-		
-		if(useCSSbg) {
-			$el.css('background', $el.attr('data-bg'));
-			$el.find('.text-container').css('opacity', '1');
-		}
-		else {
-			$el.css('background', '');
-		}
-	});
-	
-	firstInit = false;
-}
+    function typeRoles() {
+        const currentRole = roles[roleIndex];
 
-bgInit(false);
+        if (isDeleting) {
+            typingElement.textContent = currentRole.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50;
+        } else {
+            typingElement.textContent = currentRole.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 150;
+        }
 
-var scrolledWindows, minBg, maxBg, delta, ogDelta;
+        if (!isDeleting && charIndex === currentRole.length) {
+            isDeleting = true;
+            typeSpeed = 2000; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            typeSpeed = 500;
+        }
 
-function calculateBg() {
-	if(!mobileConditions()) {
-		bgInit(false);
-		
-		$('.bg-scroller').find('.bg').each(function() {
-			$(this).css('opacity', '0');
-		});
-
-		scrolledWindows = $(window).scrollTop() / $(window).height();
-		// start hax: subtract number of sections above changing background 
-		scrolledWindows -= $($('.works-card')[0]).offset().top / $(window).height();
-		scrolledWindows = Math.max(scrolledWindows, 0);
-		// end hax
-		minBg = Math.floor(scrolledWindows);
-		maxBg = minBg + 1;
-		delta = scrolledWindows - minBg;
-		ogDelta = delta;
-		if(delta < 0.4) {
-			delta = 0;
-		}
-		else if(delta < 0.6) {
-			delta = 5*(delta-0.4);
-		}
-		else {
-			delta = 1;
-		}
-
-		delta = -1 * Math.cos(delta/1 * (Math.PI/2)) + 1;
-		
-		$('.bg-scroller').find('.bg:nth-child(' + (minBg+1) + ')').css('opacity', 1);
-		$('.bg-scroller').find('.bg:nth-child(' + (maxBg+1) + ')').css('opacity', delta);
-
-
-		$('.works-card:nth-child(' + (minBg+2) + ') .text-container').css({
-			opacity: 1 - delta,
-		});
-		$('.works-card:nth-child(' + (maxBg+2) + ') .text-container').css({
-			opacity: delta,
-		});
-	}
-	
-	else {
-		bgInit(true);
-	}
-}
-
-calculateBg();
-
-var timer;
-
-$(window).on('scroll', function() {
-	scrollAnimations();
-
-	clearTimeout(timer);
-
-	timer = setTimeout(function() {
-		var sections = $('section');
-
-		var hash = '';
-
-		sections.each(function() {
-			var $el = $(this);
-			var viewportPos = ($(window).scrollTop() - $el.offset().top) / $(window).height();
-
-			if(viewportPos < 0.4 && viewportPos > -0.6) {
-				hash = $el.attr('id');
-			} 
-		});
-
-		if(hash) {
-			history.replaceState({
-				page: hash
-			}, $('title').html(), '#' + hash);
-		}
-	}, 200);
-});
-
-function scrollAnimations() {
-	calculateBg();
-
-	if(!mobileConditions()) {
-		$('.main h1, .main h3').each(function() {
-			var scrolledFrac = $(window).scrollTop() / $(window).height();
-			$(this).css({
-				opacity: Math.min(1, 1.2 - 1.5*scrolledFrac),
-				position: 'relative',
-				// fun fact: using transforms here causes weird rendering bugs in Chrome
-				top: (scrolledFrac * $(window).height() / 2) + 'px'
-			});
-		});
-	}
-}
-
-var canvas = $('canvas#bg')[0];
-
-canvas.width = $(window).width();
-canvas.height = $(window).height();
-
-var ctx = canvas.getContext('2d');
-
-$(window).on('resize', function() {
-	canvas.width = $(window).width();
-	canvas.height = $(window).height();
-})
-
-function Point() {
-	var p = this;
-	
-	var r = 8;
-	
-	// progress below 0 is neglected, negative initial
-	// progress serves to introduce random delays - 
-	// at 0.05 progress points per second, for example
-	// a dot with initial progress -0.15 will run 2 frames
-	// after a dot with initial progress -0.05
-	var initialProgress = -4 * Math.random();
-	
-	// moves point to a random location and 
-	// resets its progress
-	this.init = function() {
-		p.x = Math.random() * canvas.width;
-		p.y = Math.random() * canvas.height;
-		p.progress = initialProgress;
-	}
-	
-	this.draw = function() {
-		if(p.progress >= 0) {
-			// opacity of of dot changes with progress
-			ctx.fillStyle = 'rgba(0,0,0,' + Math.sqrt(p.progress*0.005) + ')';
-			ctx.beginPath();
-			// radius calculation: maps progress from [0, 1] to [0, pi],
-			// then takes sine of that to get an increase, then decrease
-			// in radius. absolute value to prevent floating point errors
-			// accidentally causing negative sine values which cause ctx.arc
-			// to throw errors
-			ctx.arc(p.x, p.y, Math.abs(Math.sin(Math.PI*p.progress)*r), 0, 2*Math.PI);
-			ctx.fill();
-		}
-	};
-	this.render = function() {
-		// stars come faster than they go
-		// so user can look at them longer
-		// i guess? idk this just looked pretty
-		if(p.progress > 0.5)
-			p.progress += 0.005;
-		else
-			p.progress += 0.05;
-		p.draw();
-		if(p.progress >= 1) p.init();
-	}
-}
-var dots = [];
-
-var n = 20;
-
-for(var i = 0; i < n; i++) {
-	dots[i] = new Point();
-	dots[i].init();
-}
-
-function loop() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	
-	for(var i = 0; i < n; i++) {
-		dots[i].render();
-	}
-		
-	requestAnimationFrame(loop);
-}
-
-loop();
-
-var sentences = [
-	'Tried typing NOX?',
-	'Best viewed in Visual Studio Code.',
-	'sh -c "$(curl -sL https://aakarsh.github.io/test.sh)"',
-	'This text is subject to change.',
-	'Alliteration alert!',
-	'Boolean logic jokes are funny, whether you laugh xor not.',
-];
-
-var counter = 1;
-
-var ticker = $("footer .ticker");
-
-function changeText() {
-	var el = ticker,
-		text = sentences[counter],
-		oldText = el.text();
-
-	var x = setInterval(function() {
-		if(oldText.length != 0) {
-			oldText = oldText.slice(0, -1);
-			el.text(oldText);
-		}
-		else {
-			setTimeout(function() {
-				var y = setInterval(function() {
-					if(el.text().length != text.length) {
-						el.text(text.slice(0, el.text().length+1));
-					}
-					else {
-						setTimeout(function() {
-							if(counter >= sentences.length - 1)
-								counter = 0;
-							else
-								counter++;
-
-							changeText();
-						}, 5000);
-						clearInterval(y);
-					}
-				}, 60);
-			}, 60);
-			clearInterval(x);
-		}
-	}, 60);
-}
-
-ticker.html(sentences[0]);
-
-setTimeout(changeText, 5000);
-
-$('a[href^="#"]').on('click', function(e) {
-	e.preventDefault();
-
-	var el = $($(this).attr('href'));
-
-	var distance = Math.abs($(window).scrollTop() - $(el).offset().top);
-
-	var time = Math.floor( Math.sqrt(distance / $(document).height()) * 1500 );
-
-	$('html, body').animate({
-		scrollTop: el.offset().top
-	}, time);
-});
-
-// slight convenience: fix the header section with my correct age automatically
-
-var birthDate = new Date('1998-04-23');
-var today = new Date();
-var age = today.getFullYear() - birthDate.getFullYear();
-var m = today.getMonth() - birthDate.getMonth();
-if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-}
-
-function numberToWords(num) {
-    var ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
-    var tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
-    var teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
-
-    if (num < 10) {
-        return ones[num];
-    } else if (num < 20) {
-        return teens[num - 10];
-    } else {
-        var ten = Math.floor(num / 10);
-        var one = num % 10;
-        return tens[ten] + (one > 0 ? '-' + ones[one] : '');
+        setTimeout(typeRoles, typeSpeed);
     }
-}
+    typeRoles();
 
-$('.age').html(' ' + numberToWords(age));
 
-// easter egg
+    // --- 2. 3D Tilt Effect ---
+    const tiltCards = document.querySelectorAll('.tilt-card');
 
-var sequences = [
-	[ 78, 79, 88 ],
-	[ 76, 85, 77, 79, 83 ],
-];
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-var mode = 0;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-var eei = 0;
+            // Calculate rotation (max 15deg)
+            const rotateX = ((y - centerY) / centerY) * -10;
+            const rotateY = ((x - centerX) / centerX) * 10;
 
-$(window).on('keyup', function(e) {
-	var sequence = sequences[mode];
-	if(e.keyCode == sequence[eei]) {
-		eei++;
-	}
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
 
-	else {
-		eei = 0;
-	}
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+        });
+    });
 
-	if(eei == sequence.length) {
-		if(mode === 1) {
-			$('body').removeClass('dark-mode');
-			mode = 0;
-		}
-		else {
-			$('body').addClass('dark-mode');
-			mode = 1;
-		}
-		eei = 0;
-	}
-})
+
+    // --- 3. Scroll Reveal & Counter Animation ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+
+                // Trigger Count Up if it's a number
+                if (entry.target.classList.contains('count-up')) {
+                    animateValue(entry.target, 0, parseFloat(entry.target.dataset.target), 2000);
+                    observer.unobserve(entry.target); // Run once
+                }
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.tilt-card, .stat-number').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        observer.observe(el);
+    });
+
+    function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const value = progress * (end - start) + start;
+
+            // Format floats vs ints
+            if (end % 1 !== 0) {
+                obj.innerHTML = value.toFixed(2);
+            } else {
+                obj.innerHTML = Math.floor(value);
+            }
+
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                obj.innerHTML = end; // Ensure final value
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+
+    // --- 4. Particle Canvas Background ---
+    const canvas = document.getElementById('canvas-bg');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = `rgba(100, 255, 218, ${Math.random() * 0.5})`;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw connections
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(100, 255, 218, ${0.1 - distance / 1500})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    }
+
+    // --- 5. PDF Modal Logic ---
+    const modal = document.getElementById("pdf-modal");
+    const pdfFrame = document.getElementById("pdf-frame");
+    const btns = document.querySelectorAll(".view-pdf-btn");
+    const span = document.getElementsByClassName("close-modal")[0];
+
+    if (modal && btns.length > 0) {
+        btns.forEach(btn => {
+            btn.addEventListener("click", function (e) {
+                e.preventDefault(); // Stop scrolling to top
+                const pdfSrc = this.getAttribute("data-pdf");
+                pdfFrame.src = pdfSrc;
+                modal.style.display = "block";
+
+                setTimeout(() => modal.classList.add("show"), 10);
+                document.body.style.overflow = "hidden";
+            });
+        });
+
+        function closeModal() {
+            modal.classList.remove("show");
+            setTimeout(() => {
+                modal.style.display = "none";
+                pdfFrame.src = "";
+                document.body.style.overflow = "auto";
+            }, 300);
+        }
+
+        if (span) span.onclick = closeModal;
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    }
+
+    // Footer Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+});

@@ -1,126 +1,278 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171046049-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171046049-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-171046049-1');
+    </script>
 
-  gtag('config', 'UA-171046049-1');
-</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aakarsh Sasi | iOS Engineer</title>
+    <meta name="description"
+        content="Aakarsh Sasi - iOS Platform Lead & UI Expert. Specializing in UIKit, SwiftUI, and High-Performance Mobile Engineering.">
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Aakarsh Sasi - iOS developer</title>
-	<meta name="description" content="iOS developer and technology enthusiast who never gives up.">
-	<meta name="keywords" content="Aakarsh, Aakarsh Sasi, TapIn, iOS, iosDev, Vit vellore, vellore">
-	<meta property="og:url" content="https://aakarshsasi.github.io">
-	<meta property="og:type" content="iOSdev">
-	<meta property="og:title" content="Aakarsh Sasi">
-	<meta property="og:description" content="iOS developer and technology enthusiast who never gives up.">
-	
-	<meta name="twitter:creator" content="@aakarshsasi">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Nunito:400,600,700">
-	<link rel="stylesheet" type="text/css" href="AakarshSasi/style.css">
-	<script src="https://kit.fontawesome.com/a5e689a035.js" crossorigin="anonymous"></script>
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Aakarsh Sasi">
+    <meta property="og:description" content="iOS Engineer creating premium mobile experiences.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/a5e689a035.js" crossorigin="anonymous"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="AakarshSasi/style.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 </head>
+
 <body>
-<section id="home" class="main" style="background: white;">
-	<canvas id="bg"></canvas>
-	<div class="text-container">
-		<h1>Hi, I&rsquo;m Aakarsh.</h1>
-		<h3>I&rsquo;m a <span class="age"> twenty one</span> year-old iOS developer from India, currently working at <em>Zomato</em>.</h3>
-		<h3>You can click to see my <a href="AakarshSasi/resume.pdf">resume</a>, my development <a href="#ARCS">portfolio</a>, and ways to <a href="#contact">contact</a> me.</h3>
-	</div>
-</section>
 
-<section id="ARCS" class="works-card" style="background: linear-gradient(-30deg, #ff1151 30%, #ff7097 80%); color: white">
-	<div class="image-container">
-		<img src="AakarshSasi/ARCS.png" loading="lazy" class="side-image">
-	</div>
-	<div class="text-container">
-		<h1>ARCS'19 iOS App</h1>
-		<p>ARCS is a technical colloquium planned with the aim of enhancing and building up technical knowledge of the young minds studying in VIT organized by IEEE Computer Society.</p>
-		<p>I was the lead iOS developer for this 4-day event. This project involved Google Firebase integration and backend API integration with the portal
-			using Alamofire as well as in-app payment and registration.</p>
-			<p>It also served the option of uploading the source code of the work done in the hackathon by the participants </p>
-		<p><a href="http://arcs.ieeecsvit.com" target="_blank" class="button dark" style="color: #ff1151">Website</a> <a href="https://github.com/aakarshsasi/ARCS19-App" target="_blank" class="button dark" style="color: #ff1151">Source</a></p>
-	</div>
-</section>
+    <!-- Particle Background -->
+    <canvas id="canvas-bg"></canvas>
 
-<section id="Tapin" class="works-card white-link" style="background: white; color: #333">
-	<div class="text-container">
-		<h1>TapIn</h1>
-		<p>TapIn is a social media platform that aims to solve the subscription fatigue of readers and digital publisher's content monetization problem.</p>
-		<p>I was the iOS app developer for them from October, 2019 to May, 2020.</p>
-		<p>During this period, I added infinite scrolling support, caching of data for offline access using Core Data, dynamic dark and light mode theme, in-app YouTube support and integrated social oauth2 logins for Google, Facebook, Twitter and LinkedIn.</p>
-		<p><a href="https://tapin.news" target="_blank" class="button" style="color: #333">Website</a><a href="AakarshSasi/WorkEx-TapIn.pdf" target="_blank" class="button" style="color: #333">Work Experience</a></p>
-	</div>
-	<div class="image-container">
-		<img src="AakarshSasi/TapIn.png" class="side-image">
-	</div>
-</section>
+    <nav>
+        <div class="container">
+            <div class="logo">Aakarsh Sasi<span>.</span></div>
+            <div class="nav-links">
+                <a href="#ui-engineering" class="magnet">UI/UX</a>
+                <a href="#platform" class="magnet">Platform</a>
+                <a href="#leadership" class="magnet">Leadership</a>
+                <a href="#contact" class="magnet">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-<section id="evoluate" class="works-card white-link" style="background: linear-gradient(#1f2e3a, #30475a); color: white">>
-	<div class="image-container">
-		<img src="AakarshSasi/evoluate.png" loading="lazy" class="side-image">
-	</div>
-	<div class="text-container">
-		<h1>Evoluate</h1>
-		<p> Evoluate was an app that made learning the evolution process fun and easy.</p>
-		<p>It has a very simple UI to make it easy for children to use. A timeline mentioning the name and year of origin of various species is displayed. The app had
-			Firebase integration for data handling.</p>
-		
-		<p><a href="https://www.github.com/aakarshsasi/evoluate" target="_blank" class="button dark" style="color: #d82323">Source</a><a href="https://www.youtube.com/watch?v=sxKdb9zKCwQ&feature=youtu.be" target="_blank" class="button dark" style="color: #d82323">Demo Video</a></p>
-	</div>
-</section>
+    <main>
 
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <p class="eyebrow">Hello, I'm Aakarsh</p>
+                <h1>I craft <span class="typing-text"></span><br>experiences.</h1>
+                <p class="subtitle">iOS Platform Lead & UI Architect at <strong>Zomato</strong>.</p>
+                <div class="cta-group">
+                    <a href="AakarshSasi/resume.pdf" target="_blank" class="cta-button primary magnet">Resume</a>
+                    <a href="#ui-engineering" class="cta-button secondary magnet">Explore Work</a>
+                </div>
+            </div>
 
+            <div class="hero-scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+            </div>
+        </section>
 
-<section id="contact" style="background: white; color: black">
-	<h1>Contact</h1>
-	<p>I appreciate everything from a pull request to an email. Hit me up and I’ll get in touch as soon as I can.</p>
-	<div class="contact-info-container">
-		<a class="contact-method" href="mailto:aakarshsasi@gmail.com">
-			<i class="email"></i>
-			<h3 class="type">Email</h3>
-			<p class="detail">aakarshsasi@gmail.com</p>
-		</a>
-		<a class="contact-method" href="https://facebook.com/sinlessblack">
-			<i class="fa fa-facebook-f"></i>
-			<h3 class="type">Facebook</h3>
-			<p class="detail">Aakarsh Sasi</p>
-		</a>
-		<a class="contact-method" href="https://www.linkedin.com/in/aakarsh-s-7bb80a177/">
-			<i class="fa fa-linkedin" aria-hidden="true"></i>
-			<h3 class="type">LinkedIn</h3>
-			<p class="detail">Aakarsh Sasi</p>
-		</a>
-		<a class="contact-method" href="https://github.com/Aakarshsasi">
-			<i class="fa fa-github"></i>
-			<h3 class="type">GitHub</h3>
-			<p class="detail">aakarshsasi</p>
-		</a>
-	</div>
-</section>
+        <!-- UI Engineering Focus (Primary) -->
+        <section id="ui-engineering">
+            <div class="container">
+                <h2 class="section-title" data-text="UI Engineering">UI Engineering</h2>
+                <div class="intro-text">
+                    Specializing in high-performance UIKit & SwiftUI architectures that blend aesthetics with raw speed.
+                </div>
 
-<footer>
-	
-	Made by Aakarsh Sasi, with love.
-	<br>
-	<div class="ticker"></div>
+                <div class="grid-2">
+                    <div class="tilt-card" data-tilt>
+                        <div class="card-content">
+                            <div class="icon-box"><i class="fa fa-layer-group"></i></div>
+                            <h3>UIKit & SwiftUI Expert</h3>
+                            <p>Designed reusable UI design systems and comprehensive component libraries balancing
+                                flexibility and performance.</p>
+                            <div class="tags">
+                                <span>Design Systems</span>
+                                <span>Complex Animations</span>
+                                <span>Reusable Components</span>
+                            </div>
+                        </div>
+                    </div>
 
-</footer>
+                    <div class="tilt-card" data-tilt>
+                        <div class="card-content">
+                            <div class="icon-box"><i class="fa fa-tachometer-alt"></i></div>
+                            <h3>Performance-First UX</h3>
+                            <p>Improved UX responsiveness through deep instrumentation (render timings, FPS monitoring)
+                                rather than guesswork.</p>
+                            <div class="tags">
+                                <span>Render Loop Optimization</span>
+                                <span>Instruments</span>
+                                <span>FPS Profiling</span>
+                            </div>
+                        </div>
+                    </div>
 
-<div class="bg-scroller"></div>
+                    <div class="tilt-card full-width" data-tilt>
+                        <div class="card-content">
+                            <div class="icon-box"><i class="fa fa-mobile-alt"></i></div>
+                            <h3>Product & Feature Engineering</h3>
+                            <p>Shipped critical user-facing features across Menu, Checkout, and Deep Links. Led
+                                backend-driven UI experiments and Safe Rollouts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="AakarshSasi/script.js"></script>
+        <!-- Platform & Reliability Focus (Secondary) -->
+        <section id="platform">
+            <div class="container">
+                <h2 class="section-title" data-text="Platform & Reliability">Platform & Reliability</h2>
+
+                <div class="grid-3">
+                    <div class="stat-card">
+                        <div class="stat-number count-up" data-target="99.96">0</div>
+                        <div class="stat-label">Crash Free Rate</div>
+                        <p class="stat-desc">Achieved by building robust crash reporting & breadcrumbs infrastructure.
+                        </p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number count-up" data-target="15">0</div>
+                        <div class="stat-label">MB Reduced</div>
+                        <p class="stat-desc">App size reduction through asset optimization and legacy cleanup.</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number">
+                            &lt;1%</div>
+                        <div class="stat-label">Event Drop Rate</div>
+                        <p class="stat-desc">Achieved by rewriting the legacy ObjC analytics engine into a
+                            modern Swift framework.</p>
+                    </div>
+                </div>
+
+                <div class="experience-list">
+                    <div class="exp-item">
+                        <div class="exp-date">Jan 2021 - Present</div>
+                        <div class="exp-details">
+                            <h3>iOS Platform Lead @ Zomato</h3>
+                            <p>Leading cross-cutting concerns: stability, performance, build systems, and analytics.
+                            </p>
+                            <ul>
+                                <li><strong>Observability:</strong> Built trace events, render timing, and UI
+                                    diagnostics.</li>
+                                <li><strong>Migration:</strong> Led Carthage → SPM / XCFrameworks migration for
+                                    Apple
+                                    Silicon support.</li>
+                                <li><strong>Clean Code:</strong> Large-scale localization and legacy code cleanup.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership & DX -->
+        <section id="leadership">
+            <div class="container">
+                <h2 class="section-title" data-text="Leadership & Tools">Leadership & Tools</h2>
+                <div class="grid-2">
+                    <div class="feature-card">
+                        <h3><i class="fa fa-rocket"></i> Developer Experience</h3>
+                        <p>Reduced onboarding time by <strong>~70%</strong> via cached builds & setup scripts. Built
+                            internal debug tools (FPS Monitor, Render Analyzer) to accelerate development.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3><i class="fa fa-users"></i> Mentorship & Ownership</h3>
+                        <p>Served as Menu Module Owner for 2 years. Drove safe rollouts, deprecations, and
+                            cross-functional coordination with backend & analytics teams.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects (Legacy) -->
+        <section id="projects-legacy">
+            <div class="container">
+                <h2 class="section-title" data-text="Selected Works">Selected Works</h2>
+                <div class="projects-slider">
+                    <!-- Project 0 (New) -->
+                    <div class="project-slide">
+                        <div class="slide-content">
+                            <h3>Memory Bank MCP</h3>
+                            <p>Open Source AI knowledge base tool with Remote SSH support. <strong>14.5k+</strong> tool
+                                calls & <strong>30+</strong> GitHub stars.</p>
+                            <a href="https://www.npmjs.com/package/@aakarsh-sasi/memory-bank-mcp" target="_blank"
+                                class="link-btn">View on NPM</a>
+                        </div>
+                        <img src="AakarshSasi/mcp-ai.png" class="slide-image" alt="Memory Bank MCP"
+                            style="object-fit: cover;">
+                    </div>
+
+                    <!-- Project 1 -->
+                    <div class="project-slide">
+                        <div class="slide-content">
+                            <h3>TapIn</h3>
+                            <p>Social media platform for content monetization. Implemented infinite scrolling, Core Data
+                                caching, and OAuth2.</p>
+                            <a href="#" class="link-btn view-pdf-btn" data-pdf="AakarshSasi/WorkEx-TapIn.pdf">View
+                                Work</a>
+                        </div>
+                        <img src="AakarshSasi/tapin.jpg" class="slide-image" alt="TapIn App" style="object-fit: cover;">
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-slide">
+                        <div class="slide-content">
+                            <h3>ARCS'19</h3>
+                            <p>Lead iOS developer for IEEE technical colloquium. Features included Payments,
+                                Registration, and Live Updates.</p>
+                            <a href="https://github.com/aakarshsasi/ARCS19-App" target="_blank"
+                                class="link-btn">GitHub</a>
+                        </div>
+                        <img src="AakarshSasi/arcs.png" class="slide-image" alt="ARCS App" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title" data-text="Connect">Connect</h2>
+                <div class="social-orbit">
+                    <a href="mailto:aakarshsasi@gmail.com" class="planet p1" title="Email"><i
+                            class="fa fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/aakarsh-s-7bb80a177/" class="planet p2" title="LinkedIn"><i
+                            class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/Aakarshsasi" class="planet p3" title="GitHub"><i
+                            class="fa fa-github"></i></a>
+                </div>
+                <p class="contact-text">Ready to build the extraordinary.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PDF Modal -->
+    <div id="pdf-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <iframe id="pdf-frame" src="" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Engineered by Aakarsh Sasi © <span id="year"></span></p>
+        </div>
+    </footer>
+
+    <script src="AakarshSasi/script.js"></script>
 </body>
+
 </html>
