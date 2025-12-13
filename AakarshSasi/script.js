@@ -222,6 +222,68 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
+    // --- 6. Lightbox Gallery ---
+    const lightboxModal = document.getElementById("lightbox-modal");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeLightbox = document.querySelector(".close-lightbox.close-lightbox"); // Adjusted selector to be specific if needed, but class is sufficient
+    const lightboxCloseBtn = document.querySelector("#lightbox-modal .close-modal"); // Fallback
+
+    const wwdcCard = document.getElementById("wwdc-card");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    const galleryImages = [
+        "AakarshSasi/wwdc_1.jpeg",
+        "AakarshSasi/wwdc_2.jpeg"
+    ];
+    let currentImageIndex = 0;
+
+    function openLightbox(index) {
+        currentImageIndex = index;
+        lightboxImg.src = galleryImages[currentImageIndex];
+        lightboxModal.style.display = "flex"; // Flex to center
+        setTimeout(() => lightboxModal.classList.add("show"), 10);
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeGallery() {
+        lightboxModal.classList.remove("show");
+        setTimeout(() => {
+            lightboxModal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }, 300);
+    }
+
+    function showNext() {
+        currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+        lightboxImg.src = galleryImages[currentImageIndex];
+    }
+
+    function showPrev() {
+        currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+        lightboxImg.src = galleryImages[currentImageIndex];
+    }
+
+    if (wwdcCard) {
+        wwdcCard.addEventListener("click", () => {
+            console.log("WWDC Card Clicked"); // Debug
+            openLightbox(0);
+        });
+        wwdcCard.style.cursor = "pointer"; // Ensure pointer cursor
+    }
+
+    if (lightboxCloseBtn) lightboxCloseBtn.addEventListener("click", closeGallery);
+    if (nextBtn) nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNext(); });
+    if (prevBtn) prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrev(); });
+
+    // Close on background click
+    window.addEventListener("click", (e) => {
+        if (e.target === lightboxModal) {
+            closeGallery();
+        }
+    });
+
     // Footer Year
     document.getElementById('year').textContent = new Date().getFullYear();
 });

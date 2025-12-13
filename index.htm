@@ -13,13 +13,54 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aakarsh Sasi | iOS Engineer</title>
+    <title>Aakarsh Sasi | Senior iOS Engineer - SwiftUI & UIKit Expert</title>
     <meta name="description"
-        content="Aakarsh Sasi - iOS Platform Lead & UI Expert. Specializing in UIKit, SwiftUI, and High-Performance Mobile Engineering.">
+        content="Senior iOS Engineer specializing in High-Performance Mobile Architectures. Expert in SwiftUI, UIKit, and building scaler apps for Top Tech companies like Zomato. Based in India, open to global opportunities (US/Remote).">
+    <meta name="keywords"
+        content="iOS Developer, Senior iOS Engineer, SwiftUI Expert, UIKit, Mobile Architect, Hire iOS Developer, Zomato Engineer, FAANG preparation, Best iOS Developers, Aakarsh Sasi">
+    <meta name="author" content="Aakarsh Sasi">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Aakarsh Sasi">
-    <meta property="og:description" content="iOS Engineer creating premium mobile experiences.">
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aakarshsasi.github.io/">
+    <meta property="og:title" content="Aakarsh Sasi | Senior iOS Engineer & Architect">
+    <meta property="og:description"
+        content="Building world-class mobile experiences. Expert in SwiftUI, UIKit, and Performance Optimization. Former Lead at Zomato.">
+    <meta property="og:image" content="https://aakarshsasi.github.io/AakarshSasi/wwdc_1.jpeg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aakarshsasi.github.io/">
+    <meta property="twitter:title" content="Aakarsh Sasi | Senior iOS Engineer">
+    <meta property="twitter:description"
+        content="Building world-class mobile experiences. Expert in SwiftUI, UIKit, and Performance Optimization.">
+    <meta property="twitter:image" content="https://aakarshsasi.github.io/AakarshSasi/wwdc_1.jpeg">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Aakarsh Sasi",
+      "jobTitle": "Senior iOS Engineer",
+      "url": "https://aakarshsasi.github.io/",
+      "sameAs": [
+        "https://www.linkedin.com/in/aakarsh-s-7bb80a177/",
+        "https://github.com/Aakarshsasi"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Zomato"
+      },
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "Zomato"
+      },
+      "knowsAbout": ["iOS Development", "Swift", "SwiftUI", "UIKit", "Mobile Architecture", "Performance Optimization", "Objective-C"],
+      "description": "Senior iOS Engineer creating premium mobile experiences. Specializing in high-performance UIKit & SwiftUI architectures.",
+      "image": "https://aakarshsasi.github.io/AakarshSasi/wwdc_1.jpeg"
+    }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,11 +121,14 @@
         <!-- UI Engineering Focus (Primary) -->
         <section id="ui-engineering">
             <div class="container">
-                <h2 class="section-title" data-text="UI Engineering">UI Engineering</h2>
-                <div class="intro-text">
-                    Specializing in high-performance UIKit & SwiftUI architectures that blend aesthetics with raw speed.
-                </div>
-
+                <h1 class="hero-title">
+                    Code that moves<br>
+                    <span class="typing-text">Mobile</span>
+                </h1>
+                <p class="intro-text">
+                    <strong>Senior iOS Engineer</strong> creating premium, high-performance mobile experiences. <br>
+                    Specializing in advanced <strong>UIKit & SwiftUI</strong> architectures for top-tier tech companies.
+                </p>
                 <div class="grid-2">
                     <div class="tilt-card" data-tilt>
                         <div class="card-content">
@@ -238,6 +282,31 @@
                     </div>
                 </div>
             </div>
+            </div>
+        </section>
+
+        <!-- Highlights (WWDC) -->
+        <section id="highlights">
+            <div class="container">
+                <h2 class="section-title" data-text="Highlights">Highlights</h2>
+                <div class="highlight-card tilt-card" id="wwdc-card">
+                    <div class="highlight-content">
+                        <div class="badge">WWDC25</div>
+                        <h3>Global Developer Experience</h3>
+                        <p>Represented Zomato at Apple's Worldwide Developers Conference. Connected with the global
+                            community and Apple leadership, exploring the future of SwiftUI and Intelligence.</p>
+                        <div class="tags">
+                            <span>Apple Park</span>
+                            <span>Community</span>
+                            <span>Tim Cook</span>
+                        </div>
+                    </div>
+                    <div class="highlight-image">
+                        <img src="AakarshSasi/wwdc_1.jpeg" alt="WWDC Experience"
+                            style="object-fit: cover; width: 100%; height: 100%; border-radius: 8px;">
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Contact Section -->
@@ -276,3 +345,15 @@
 </body>
 
 </html>
+<!-- Image Lightbox -->
+<div id="lightbox-modal" class="modal">
+    <span class="close-modal close-lightbox">&times;</span>
+    <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="Gallery Image">
+        <div class="lightbox-nav">
+            <button id="prev-btn" class="nav-btn">&#10094;</button>
+            <div class="dots-container"></div>
+            <button id="next-btn" class="nav-btn">&#10095;</button>
+        </div>
+    </div>
+</div>
